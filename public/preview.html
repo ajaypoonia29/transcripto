@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcripto | Premium Fitness Transformation</title>
+    <meta name="description" content="Witness the ultimate evolution in personalized strength, conditioning, and metabolic wellness with the Transcripto transformation engine.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #040406;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.07);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #00f2fe;
+            --accent-pink: #fe0879;
+            --accent-purple: #8b5cf6;
+            --font-head: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.1) 0%, transparent 40%);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient Glow Objects */
+        .ambient-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-purple);
+            filter: blur(150px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation Header */
+        header {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-primary);
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: normal;
+            -webkit-text-fill-color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+            padding: 80px 0;
+            min-height: 80vh;
+        }
+
+        .hero-text {
+            flex: 1.2;
+        }
+
+        .hero-badge {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 520px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            font-family: var(--font-head);
+            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: #000;
+            font-weight: 700;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            flex: 0.8;
+            position: relative;
+        }
+
+        .hero-image-wrapper {
+            width: 100%;
+            height: 450px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.1);
+            transition: transform 0.8s ease;
+        }
+
+        .hero-image-wrapper:hover .hero-image {
+            transform: scale(1.05);
+        }
+
+        .hero-overlay-card {
+            position: absolute;
+            bottom: 24px;
+            left: -24px;
+            background: rgba(10, 11, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            padding: 16px 24px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .glow-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-cyan);
+        }
+
+        /* Programs Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-head);
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .programs {
+            padding: 80px 0;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+            transition: all 0.4s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-card:hover::before {
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-purple), transparent);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 20px;
+            border: 1px solid var(--card-border);
+            color: var(--accent-cyan);
+        }
+
+        .card-title {
+            font-family: var(--font-head);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* interactive DDA Simulator */
+        .simulator {
+            background: linear-gradient(180deg, #090a10 0%, #050508 100%);
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .sim-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 48px;
+        }
+
+        .sim-console {
+            background: #010204;
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #10b981;
+            height: 480px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .console-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .console-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot-red { background: #ef4444; width: 10px; height: 10px; border-radius: 50%; }
+        .dot-yellow { background: #f59e0b; width: 10px; height: 10px; border-radius: 50%; }
+        .dot-green { background: #10b981; width: 10px; height: 10px; border-radius: 50%; }
+
+        .console-line {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .console-line.cmd {
+            color: var(--accent-cyan);
+        }
+
+        .console-line.info {
+            color: var(--text-secondary);
+        }
+
+        .console-line.success {
+            color: #10b981;
+        }
+
+        .console-line.error {
+            color: var(--accent-pink);
+        }
+
+        /* Lead Form styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+        }
+
+        /* Pricing Cards */
+        .pricing {
+            padding: 80px 0;
+        }
+
+        .price-tag {
+            font-family: var(--font-head);
+            font-size: 40px;
+            font-weight: 800;
+            margin: 20px 0;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .price-tag span {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* CMS Control Panel */
+        .cms-panel {
+            background: rgba(139, 92, 246, 0.03);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(10, 11, 18, 0.95);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 12px;
+            padding: 16px 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(150px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+
+        /* Pulse highlight animation */
+        @keyframes pulse-highlight {
+            0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 242, 254, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+        }
+
+        .pulse-target {
+            animation: pulse-highlight 1.5s 1;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 60px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient glows -->
+    <div class="ambient-glow" style="top: 10%; left: 5%;"></div>
+    <div class="ambient-glow" style="top: 60%; right: 10%;"></div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; width: 100%;">
+            <div class="logo">TRANSCRIPTO <span>DDA Engine v1.0</span></div>
+            <nav class="nav-links">
+                <a href="#hero">Overview</a>
+                <a href="#programs">Programs</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#simulator">Architecture Simulator</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="container hero" id="hero">
+        <div class="hero-text">
+            <div class="hero-badge" id="cms-badge">PLATINUM PLATFORM</div>
+            <h1 class="hero-title" id="cms-hero-title"><span>Transform Your Body.</span><br>Redefine Your Limits.</h1>
+            <p class="hero-subtitle" id="cms-hero-subtitle">Premium athletic training plans, hybrid strength architectures, and structural metabolic conditioning built for elite performance.</p>
+            <div class="hero-cta">
+                <a href="#simulator" class="btn btn-primary">Try Ingest Demo</a>
+                <a href="#pricing" class="btn btn-secondary">Explore Plans</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-image-wrapper">
+                <img src="hero_fitness_bg.png" alt="Fitness Transformation" class="hero-image">
+            </div>
+            <div class="hero-overlay-card">
+                <div class="glow-dot"></div>
+                <div>
+                    <div style="font-weight: 700; font-size: 14px;">Live Connection</div>
+                    <div style="font-size: 11px; color: var(--text-secondary);">Antigravity Laravel Router Ready</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs (CRM Preferred program types) -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Elite Transformation Modules</h2>
+                <p>Choose your preferred focus program type to trigger our CRM domain flow and capture pipelines.</p>
+            </div>
+            <div class="grid-3">
+                <div class="glass-card">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">Strength & Conditioning</h3>
+                    <p class="card-desc">Hypertrophy optimization, functional power foundations, and nervous system recruitment models.</p>
+                </div>
+                <div class="glass-card">
+                    <div class="card-icon">♾️</div>
+                    <h3 class="card-title">Hybrid Athletics</h3>
+                    <p class="card-desc">Endurance integration, compound agility circuits, and aerobic/anaerobic threshold elevation.</p>
+                </div>
+                <div class="glass-card">
+                    <div class="card-icon">🔥</div>
+                    <h3 class="card-title">Metabolic Conditioning</h3>
+                    <p class="card-desc">Rapid lipolysis engines, oxygen debt optimization routines, and post-workout metabolic burn triggers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Simulator Section -->
+    <section class="simulator" id="simulator">
+        <div class="container">
+            <div class="section-title">
+                <h2>Antigravity DDA Workflow Simulator</h2>
+                <p>Submit actions below to watch the Laravel 12 & PHP 8.4 domain architecture execute, orchestrating controllers, actions, and tasks in real time.</p>
+            </div>
+
+            <div class="sim-grid">
+                <!-- Inputs column -->
+                <div style="display: flex; flex-direction: column; gap: 32px;">
+                    <!-- 1. CRM Lead Ingestion -->
+                    <div class="glass-card">
+                        <h3 class="card-title" style="color: var(--accent-cyan); display: flex; align-items: center; gap: 8px;">
+                            <span>1.</span> CRM: IngestLeadAction
+                        </h3>
+                        <p class="card-desc" style="margin-bottom: 20px;">Triggers validation inside LeadController, invokes IngestLeadAction, executes CreateLeadTask, then fires DispatchLeadAlertTask.</p>
+                        
+                        <form id="leadForm" onsubmit="handleLeadSubmit(event)">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="leadName" class="form-input" value="Alex Rivera" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" id="leadEmail" class="form-input" value="alex@transcripto.in" required>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 16px;">
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="text" id="leadPhone" class="form-input" value="+91 98765 43210" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Preferred Program</label>
+                                    <select id="leadProgram" class="form-input" style="background: #0e1017;">
+                                        <option value="Strength & Conditioning">Strength</option>
+                                        <option value="Hybrid Athletics">Hybrid</option>
+                                        <option value="Metabolic Conditioning">Metabolic</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">Execute IngestLeadAction</button>
+                        </form>
+                    </div>
+
+                    <!-- 2. CMS Dynamic Mutation Panel -->
+                    <div class="glass-card cms-panel">
+                        <h3 class="card-title" style="color: var(--accent-purple); display: flex; align-items: center; gap: 8px;">
+                            <span>2.</span> CMS: MutateHomepageLayoutAction
+                        </h3>
+                        <p class="card-desc" style="margin-bottom: 20px;">Mutate the Hero layout JSON settings. Runs layout validation rules in the Action, then triggers UpdateSectionContentTask.</p>
+                        
+                        <div class="form-group">
+                            <label>Hero Title Text</label>
+                            <input type="text" id="cmsTitle" class="form-input" value="Transform Your Body. Redefine Your Limits.">
+                        </div>
+                        <div class="form-group">
+                            <label>Hero Subtitle Text</label>
+                            <textarea id="cmsSubtitle" class="form-input" rows="2">Premium athletic training plans, hybrid strength architectures, and structural metabolic conditioning built for elite performance.</textarea>
+                        </div>
+                        <button onclick="handleCmsMutate()" class="btn btn-secondary" style="width: 100%; border-color: rgba(139, 92, 246, 0.4);">
+                            Execute MutateHomepageLayoutAction
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Outputs column: Logs console -->
+                <div>
+                    <div class="console-header">
+                        <div class="console-dots">
+                            <span class="dot-red"></span>
+                            <span class="dot-yellow"></span>
+                            <span class="dot-green"></span>
+                        </div>
+                        <div>Laravel DDA Execution Log</div>
+                    </div>
+                    <div class="sim-console" id="console">
+                        <div class="console-line info">[System] Antigravity Domain-Driven Engine initialized. Ready to orchestrate actions.</div>
+                        <div class="console-line info">[System] Loaded Domains: CRM, Payments, CMS.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing (Payments Subscription Start) -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Subscription Architecture</h2>
+                <p>Initiate subscription plans which call GenerateRazorpayOrderTask and log transaction ledgers.</p>
+            </div>
+            <div class="grid-3">
+                <!-- Basic Card -->
+                <div class="glass-card">
+                    <div class="hero-badge">Starter</div>
+                    <h3 class="card-title" style="margin-top: 16px;">Basic Monthly</h3>
+                    <div class="price-tag">₹999 <span>/ month</span></div>
+                    <p class="card-desc" style="margin-bottom: 24px;">Essential daily workout regimes, pipeline status tracking, and base community support hubs.</p>
+                    <button onclick="handlePurchase('basic_monthly')" class="btn btn-secondary" style="width: 100%;">Initialize Subscription</button>
+                </div>
+                <!-- Premium Card -->
+                <div class="glass-card" style="border-color: rgba(0, 242, 254, 0.3); background: rgba(0, 242, 254, 0.02);">
+                    <div class="hero-badge" style="background: rgba(0,242,254,0.15); border-color: var(--accent-cyan);">Most Popular</div>
+                    <h3 class="card-title" style="margin-top: 16px;">Premium Monthly</h3>
+                    <div class="price-tag">₹2,499 <span>/ month</span></div>
+                    <p class="card-desc" style="margin-bottom: 24px;">Advanced training plan configurations, priority feedback routes, and direct video analysis gates.</p>
+                    <button onclick="handlePurchase('premium_monthly')" class="btn btn-primary" style="width: 100%;">Initialize Subscription</button>
+                </div>
+                <!-- Elite Card -->
+                <div class="glass-card">
+                    <div class="hero-badge" style="background: rgba(139,92,246,0.15); border-color: var(--accent-purple); color: var(--accent-purple);">All Access</div>
+                    <h3 class="card-title" style="margin-top: 16px;">Elite Annual</h3>
+                    <div class="price-tag">₹19,999 <span>/ year</span></div>
+                    <p class="card-desc" style="margin-bottom: 24px;">1-on-1 coach pairings, custom metabolic plans, and full access to elite offline transformation camps.</p>
+                    <button onclick="handlePurchase('elite_annual')" class="btn btn-secondary" style="width: 100%;">Initialize Subscription</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast UI element -->
+    <div id="toast" class="toast">
+        <div class="glow-dot"></div>
+        <div id="toastMessage" style="font-size: 14px; font-weight: 500;">Lead Ingested successfully!</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Transcripto Inc. Built strictly conforming to Antigravity Laravel 12 DDA Standards.</p>
+    </footer>
+
+    <!-- Interactive script logic -->
+    <script>
+        const consoleEl = document.getElementById('console');
+        const toastEl = document.getElementById('toast');
+        const toastMsgEl = document.getElementById('toastMessage');
+
+        function addLog(text, type = 'info') {
+            const line = document.createElement('div');
+            line.className = `console-line ${type}`;
+            const time = new Date().toLocaleTimeString();
+            line.innerHTML = `[${time}] ${text}`;
+            consoleEl.appendChild(line);
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+
+        function showToast(message, isSuccess = true) {
+            toastMsgEl.textContent = message;
+            toastEl.style.borderColor = isSuccess ? 'var(--accent-cyan)' : 'var(--accent-pink)';
+            toastEl.classList.add('show');
+            setTimeout(() => {
+                toastEl.classList.remove('show');
+            }, 4000);
+        }
+
+        // 1. CRM Lead Submit mock
+        function handleLeadSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('leadName').value;
+            const email = document.getElementById('leadEmail').value;
+            const phone = document.getElementById('leadPhone').value;
+            const program = document.getElementById('leadProgram').value;
+
+            addLog(`POST /api/leads request received`, 'cmd');
+            addLog(`[HTTP] App\\Http\\Controllers\\CRM\\LeadController::store() invoked.`, 'info');
+            addLog(`[Validation] Request validated. full_name="${name}", email_address="${email}"`, 'info');
+            
+            addLog(`[DDA Action] App\\Domains\\CRM\\Actions\\IngestLeadAction::execute() initiated.`, 'info');
+            
+            setTimeout(() => {
+                addLog(`[DDA Task] App\\Domains\\CRM\\Tasks\\CreateLeadTask::execute() starting database write.`, 'info');
+                addLog(`[DB] crm_leads table insert: { full_name: "${name}", email_address: "${email}", phone_number: "${phone}", pipeline_status: "new", preferred_program_type: "${program}" }`, 'success');
+            }, 600);
+
+            setTimeout(() => {
+                addLog(`[DDA Task] App\\Domains\\CRM\\Tasks\\DispatchLeadAlertTask::execute() started.`, 'info');
+                addLog(`[Notification] Route: mail -> gethelp@transcripto.in. App\\Domains\\CRM\\Notifications\\LeadAlertNotification dispatched!`, 'success');
+                addLog(`POST /api/leads returns HTTP 201 Created. Success=true.`, 'success');
+                showToast(`Lead for ${name} successfully captured! Alert emailed.`);
+            }, 1200);
+        }
+
+        // 2. Payments Purchase mock
+        function handlePurchase(planId) {
+            addLog(`POST /api/subscriptions/initialize request received`, 'cmd');
+            addLog(`[HTTP] App\\Http\\Controllers\\Payments\\SubscriptionController::initialize() invoked.`, 'info');
+            addLog(`[Validation] Request validated. user_id=101, pricing_plan_id="${planId}"`, 'info');
+            addLog(`[DDA Action] App\\Domains\\Payments\\Actions\\InitializeSubscriptionAction::execute() started.`, 'info');
+
+            setTimeout(() => {
+                addLog(`[DDA Task] App\\Domains\\Payments\\Tasks\\GenerateRazorpayOrderTask::execute() invoking external endpoint v1/orders...`, 'info');
+                const mockOrderId = 'order_' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                addLog(`[HTTP Client] POST https://api.razorpay.com/v1/orders returns HTTP 200 OK. order_id="${mockOrderId}"`, 'success');
+
+                setTimeout(() => {
+                    addLog(`[DDA Task] App\\Domains\\Payments\\Tasks\\LogTransactionLedgerTask::execute() updating ledger...`, 'info');
+                    addLog(`[DB] payment_records table write: { user_id: 101, pricing_plan_id: "${planId}", razorpay_order_id: "${mockOrderId}", transaction_status: "initiated" }`, 'success');
+                    addLog(`POST /api/subscriptions/initialize returns HTTP 201 Created.`, 'success');
+                    showToast(`Order initialized: ${mockOrderId}`);
+                }, 800);
+
+            }, 800);
+        }
+
+        // 3. CMS Mutate mock
+        function handleCmsMutate() {
+            const titleVal = document.getElementById('cmsTitle').value;
+            const subtitleVal = document.getElementById('cmsSubtitle').value;
+
+            addLog(`PUT /api/homepage-sections/hero request received`, 'cmd');
+            addLog(`[HTTP] App\\Http\\Controllers\\CMS\\HomepageSectionController::update() invoked for section_key="hero".`, 'info');
+            addLog(`[DDA Action] App\\Domains\\CMS\\Actions\\MutateHomepageLayoutAction::execute() started.`, 'info');
+
+            // Simulate the action validation logic
+            if (!titleVal || !subtitleVal) {
+                addLog(`[Error] Validation failed in Action: Layout content structure is empty or invalid.`, 'error');
+                showToast(`CMS mutation failed: Empty content structure`, false);
+                return;
+            }
+
+            addLog(`[DDA Task] App\\Domains\\CMS\\Tasks\\UpdateSectionContentTask::execute() updating layout JSON...`, 'info');
+
+            setTimeout(() => {
+                addLog(`[DB] homepage_sections table update for section_key="hero" payload updated!`, 'success');
+                
+                // Dynamically update the website UI with animation
+                const heroTitleEl = document.getElementById('cms-hero-title');
+                const heroSubtitleEl = document.getElementById('cms-hero-subtitle');
+
+                // Split title value with a break to look like layout
+                const words = titleVal.split('. ');
+                if (words.length > 1) {
+                    heroTitleEl.innerHTML = `<span>${words[0]}.</span><br>${words[1]}`;
+                } else {
+                    heroTitleEl.innerHTML = `<span>${titleVal}</span>`;
+                }
+                heroSubtitleEl.textContent = subtitleVal;
+
+                // Trigger pulse animation
+                heroTitleEl.classList.add('pulse-target');
+                heroSubtitleEl.classList.add('pulse-target');
+                
+                setTimeout(() => {
+                    heroTitleEl.classList.remove('pulse-target');
+                    heroSubtitleEl.classList.remove('pulse-target');
+                }, 1500);
+
+                addLog(`PUT /api/homepage-sections/hero returns HTTP 200 OK. UI refreshed.`, 'success');
+                showToast(`Homepage mutated successfully!`);
+            }, 800);
+        }
+    </script>
+</body>
+</html>
