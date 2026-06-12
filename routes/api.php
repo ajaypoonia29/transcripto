@@ -35,3 +35,14 @@ Route::get('/homepage-sections', [HomepageSectionController::class, 'index'])
     ->name('api.homepage-sections.index');
 Route::put('/homepage-sections/{sectionKey}', [HomepageSectionController::class, 'update'])
     ->name('api.homepage-sections.update');
+
+// Coaching Domain Routes
+Route::get('/coaching/members', [\App\Http\Controllers\Coaching\CoachingController::class, 'members'])
+    ->name('api.coaching.members');
+Route::get('/coaching/dashboard', [\App\Http\Controllers\Coaching\CoachingController::class, 'dashboard'])
+    ->name('api.coaching.dashboard');
+Route::post('/coaching/check-in', [\App\Http\Controllers\Coaching\CoachingController::class, 'checkIn'])
+    ->name('api.coaching.check-in');
+Route::post('/coaching/assign', [\App\Http\Controllers\Coaching\CoachingController::class, 'assign'])
+    ->name('api.coaching.assign');
+
