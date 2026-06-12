@@ -137,4 +137,51 @@ class CoachingController extends Controller
             'message' => 'Weekly workout and diet plans successfully assigned.',
         ], Response::HTTP_OK);
     }
+
+    /**
+     * Authenticate coach and member credentials.
+     */
+    public function login(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string'],
+        ]);
+
+        $email = strtolower($validated['email']);
+        $password = $validated['password'];
+
+        if ($email === 'admin@transcripto.in' && $password === 'admin123') {
+            return response()->json([
+                'success' => true,
+                'role' => 'admin',
+                'user_id' => 999,
+                'name' => 'Coach Administrator',
+            ], Response::HTTP_OK);
+        }
+
+        if ($email === 'john@transcripto.in' && $password === 'client123') {
+            return response()->json([
+                'success' => true,
+                'role' => 'client',
+                'user_id' => 1,
+                'name' => 'John Doe',
+            ], Response::HTTP_OK);
+        }
+
+        if ($email === 'jane@transcripto.in' && $password === 'client123') {
+            return response()->json([
+                'success' => true,
+                'role' => 'client',
+                'user_id' => 2,
+                'name' => 'Jane Smith',
+            ], Response::HTTP_OK);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Invalid email or password. Use admin@transcripto.in/admin123 or john@transcripto.in/client123.',
+        ], Response::HTTP_UNAUTHORIZED);
+    }
 }
+

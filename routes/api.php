@@ -45,4 +45,6 @@ Route::post('/coaching/check-in', [\App\Http\Controllers\Coaching\CoachingContro
     ->name('api.coaching.check-in');
 Route::post('/coaching/assign', [\App\Http\Controllers\Coaching\CoachingController::class, 'assign'])
     ->name('api.coaching.assign');
+Route::post('/coaching/login', [\App\Http\Controllers\Coaching\CoachingController::class, 'login'])
+    ->name('api.coaching.login');
 
