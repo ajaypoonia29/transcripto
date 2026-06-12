@@ -38,12 +38,14 @@ class SubscriptionController extends Controller
     {
         $validated = $request->validate([
             'user_id' => ['required', 'integer'],
-            'pricing_plan_id' => ['required', 'string', 'in:basic_monthly,premium_monthly,elite_annual'],
+            'pricing_plan_id' => ['required', 'string', 'in:basic_monthly,premium_monthly,elite_annual,paid_consultation'],
+            'scheduled_at' => ['nullable', 'date'],
         ]);
 
         $paymentRecord = $this->initializeSubscriptionAction->execute(
             (int) $validated['user_id'],
-            (string) $validated['pricing_plan_id']
+            (string) $validated['pricing_plan_id'],
+            $request->input('scheduled_at')
         );
 
         return response()->json([
@@ -56,6 +58,8 @@ class SubscriptionController extends Controller
                 'razorpay_order_id' => $paymentRecord->razorpay_order_id,
                 'amount_paid' => $paymentRecord->amount_paid,
                 'transaction_status' => $paymentRecord->transaction_status,
+                'scheduled_at' => $paymentRecord->scheduled_at?->toIso8601String(),
+                'google_meet_link' => $paymentRecord->google_meet_link,
             ],
         ], Response::HTTP_CREATED);
     }

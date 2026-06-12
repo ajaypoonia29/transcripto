@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string|null $razorpay_payment_id
  * @property int $amount_paid
  * @property string $transaction_status
+ * @property \Illuminate\Support\Carbon|null $scheduled_at
+ * @property string|null $google_meet_link
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  */
@@ -41,6 +43,8 @@ class PaymentRecord extends Model
         'razorpay_payment_id',
         'amount_paid',
         'transaction_status',
+        'scheduled_at',
+        'google_meet_link',
     ];
 
     /**
@@ -54,6 +58,8 @@ class PaymentRecord extends Model
             'user_id' => 'integer',
             'amount_paid' => 'integer',
             'transaction_status' => 'string',
+            'scheduled_at' => 'datetime',
+            'google_meet_link' => 'string',
         ];
     }
 }
