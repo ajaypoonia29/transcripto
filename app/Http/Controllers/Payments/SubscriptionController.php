@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Payments;
 
 use App\Domains\Payments\Actions\InitializeSubscriptionAction;
+use App\Domains\Payments\Actions\FetchTransactionsAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,8 +14,22 @@ use Symfony\Component\HttpFoundation\Response;
 class SubscriptionController extends Controller
 {
     public function __construct(
-        protected readonly InitializeSubscriptionAction $initializeSubscriptionAction
+        protected readonly InitializeSubscriptionAction $initializeSubscriptionAction,
+        protected readonly FetchTransactionsAction $fetchTransactionsAction
     ) {}
+
+    /**
+     * Display a listing of transaction ledgers.
+     */
+    public function index(): JsonResponse
+    {
+        $transactions = $this->fetchTransactionsAction->execute();
+
+        return response()->json([
+            'success' => true,
+            'data' => $transactions,
+        ], Response::HTTP_OK);
+    }
 
     /**
      * Initialize a new subscription.

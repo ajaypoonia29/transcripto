@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\CMS;
 
 use App\Domains\CMS\Actions\MutateHomepageLayoutAction;
+use App\Domains\CMS\Actions\FetchHomepageSectionsAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,8 +15,22 @@ use InvalidArgumentException;
 class HomepageSectionController extends Controller
 {
     public function __construct(
-        protected readonly MutateHomepageLayoutAction $mutateHomepageLayoutAction
+        protected readonly MutateHomepageLayoutAction $mutateHomepageLayoutAction,
+        protected readonly FetchHomepageSectionsAction $fetchHomepageSectionsAction
     ) {}
+
+    /**
+     * Display a listing of homepage sections.
+     */
+    public function index(): JsonResponse
+    {
+        $sections = $this->fetchHomepageSectionsAction->execute();
+
+        return response()->json([
+            'success' => true,
+            'data' => $sections,
+        ], Response::HTTP_OK);
+    }
 
     /**
      * Update the layout content for a homepage section.

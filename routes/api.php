@@ -16,14 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// CRM Lead Ingestion Route
+// CRM Lead Routes
+Route::get('/leads', [LeadController::class, 'index'])
+    ->name('api.leads.index');
 Route::post('/leads', [LeadController::class, 'store'])
     ->name('api.leads.store');
+Route::put('/leads/{id}', [LeadController::class, 'update'])
+    ->name('api.leads.update');
 
-// Payments Subscription Initialization Route
+// Payments Subscription Routes
+Route::get('/subscriptions', [SubscriptionController::class, 'index'])
+    ->name('api.subscriptions.index');
 Route::post('/subscriptions/initialize', [SubscriptionController::class, 'initialize'])
     ->name('api.subscriptions.initialize');
 
-// CMS Layout Mutation Route
+// CMS Layout Routes
+Route::get('/homepage-sections', [HomepageSectionController::class, 'index'])
+    ->name('api.homepage-sections.index');
 Route::put('/homepage-sections/{sectionKey}', [HomepageSectionController::class, 'update'])
     ->name('api.homepage-sections.update');
